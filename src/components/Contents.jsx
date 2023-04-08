@@ -45,7 +45,9 @@ export default function Contents({notesData, handleClick, darkMode, smallScreen}
 
             return () => removeEventListener("scroll", setScrollPosition)
         }
-    })
+    }, [])
+
+    // scrollHeight
 
     React.useEffect(() => {
         if(!smallScreen){
@@ -53,8 +55,6 @@ export default function Contents({notesData, handleClick, darkMode, smallScreen}
             sessionStorage.setItem("scrollPosition", JSON.stringify(scrollHeight))
         }
     })
-
-    // small screen
 
     React.useEffect(() => {
         if(smallScreen){
@@ -66,14 +66,13 @@ export default function Contents({notesData, handleClick, darkMode, smallScreen}
 
             return () => window.removeEventListener("scroll", setHeightDown)
         }
-    })
+    }, [])
 
     React.useEffect(() => {
         if(smallScreen){
             window.scrollTo({ top: windowTop, behavior: 'instant' })
             sessionStorage.setItem("topOffset", JSON.stringify(windowTop))
         }
-        
     })
 
     return(
