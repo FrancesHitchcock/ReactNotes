@@ -22,7 +22,9 @@ The app incorporates the following features:
 
 ## Reflections
 
-The user experience could be further improved by automatically positioning the contents page at the selected title when the user resizes the window pane from small to large, as it currently settles at the top of the page. However, the user is unlikely to encounter this scenario often, if at all.
+- Scrolling is very slow on a mobile phone. Does this suggest a memory leak? I have not been able to discover what the problem is at this stage.
+- The user experience could be further improved by automatically positioning the contents page at the selected title when the user resizes the window pane from small to large, as it currently settles at the top of the page. However, the user is unlikely to encounter this scenario often, if at all.
+- If I were to start this project again from scratch I would create functions to format the html in the data object body property rather than formatting using html lists.
 
 Frances Hitchcock, 1 April 2023
 
