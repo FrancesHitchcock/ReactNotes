@@ -51,10 +51,10 @@ export default function Contents({notesData, handleClick, darkMode, smallScreen}
 
     React.useEffect(() => {
         if(!smallScreen){
-            sessionStorage.setItem("scrollPosition", JSON.stringify(scrollHeight))
             document.getElementById("contents").scrollTop = scrollHeight
+            sessionStorage.setItem("scrollPosition", JSON.stringify(scrollHeight))
         }
-    })
+    }, [scrollHeight])
 
     React.useEffect(() => {
         if(smallScreen){
@@ -70,10 +70,10 @@ export default function Contents({notesData, handleClick, darkMode, smallScreen}
 
     React.useEffect(() => {
         if(smallScreen){
-            sessionStorage.setItem("topOffset", JSON.stringify(windowTop))
             window.scrollTo({ top: windowTop, behavior: 'instant' })
+            sessionStorage.setItem("topOffset", JSON.stringify(windowTop))
         }
-    })
+    }, [windowTop])
 
     return(
         <div id="contents" className={`contents ${darkMode ? "dark" : ""}`}>
