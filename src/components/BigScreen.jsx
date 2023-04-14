@@ -11,17 +11,17 @@ export default function BigScreen({notesData, description, handleClick, darkMode
             direction="horizontal" 
             className="split"
         >
-                <Contents 
-                    notesData={notesData} 
-                    handleClick={handleClick}
-                    darkMode={darkMode}
-                    smallScreen={smallScreen}
-                />
-                <Description 
-                    description={description}
-                    darkMode={darkMode}
-                    smallScreen={smallScreen}
-                />
+            <Contents 
+                notesData={notesData} 
+                handleClick={handleClick}
+                darkMode={darkMode}
+                smallScreen={smallScreen}
+            />
+            <Description 
+                description={description}
+                darkMode={darkMode}
+                smallScreen={smallScreen}
+            />
         </Split>
     )
 }

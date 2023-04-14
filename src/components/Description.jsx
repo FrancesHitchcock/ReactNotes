@@ -2,11 +2,11 @@ import React from "react"
 
 export default function Description({description, darkMode, smallScreen, goToContents}){
 
-React.useEffect(() => {
-    if(smallScreen){
-        window.scrollTo({ top: 0, behavior: 'instant' })
-    }
-})
+    React.useEffect(() => {
+        if(smallScreen){
+            window.scrollTo({ top: 0, behavior: 'instant' })
+        }
+    }, [])
 
     return(
         <div className={`description ${darkMode ? "dark" : ""}`} id="description">

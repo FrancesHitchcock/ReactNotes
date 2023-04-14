@@ -1,9 +1,21 @@
 import React from "react"
-import SmallScreen from "./SmallScreen"
 
 export default function Contents({notesData, handleClick, darkMode, smallScreen}){
-    const [scrollHeight, setScrollHeight] = React.useState(() => JSON.parse(sessionStorage.getItem("scrollPosition")) || 0)
-    const [windowTop, setWindowTop] = React.useState(() => JSON.parse(sessionStorage.getItem("topOffset")) || 0)
+    const windowTop = JSON.parse(sessionStorage.getItem("topOffset")) || 0
+    const elementHeight = document.getElementById("contents") ? document.getElementById("contents").scrollTop : 0
+
+    React.useEffect(() => {
+        if(!smallScreen){
+            document.getElementById("contents").scrollTop = elementHeight
+        }
+    }, [notesData])
+
+    React.useEffect(() => {
+        if(smallScreen){
+            window.scrollTo({ top: windowTop, behavior: 'instant' })
+        }
+    }, [notesData])
+
 
     const titles = notesData.map(note => {
         let titleColour
@@ -29,51 +41,9 @@ export default function Contents({notesData, handleClick, darkMode, smallScreen}
             style={styles} 
             className={`contents-title ${note.selected ? "blue" : ""}`} 
             key={note.id}
-            onClick={() => handleClick(note.id)}
+            onClick={() => handleClick(note.id, window.scrollY)}
         ><h3>{note.title}</h3></div>
     })
-
-    // big screen
-
-    React.useEffect(() => {
-        if(!smallScreen){
-            function setScrollPosition(event){
-                setScrollHeight(event.target.scrollTop)
-            }
-
-            document.getElementById("contents").addEventListener("scroll", setScrollPosition)
-
-            return () => removeEventListener("scroll", setScrollPosition)
-        }
-    }, [])
-
-    // scrollHeight
-
-    React.useEffect(() => {
-        if(!smallScreen){
-            document.getElementById("contents").scrollTop = scrollHeight
-            sessionStorage.setItem("scrollPosition", JSON.stringify(scrollHeight))
-        }
-    }, [scrollHeight])
-
-    React.useEffect(() => {
-        if(smallScreen){
-            function setHeightDown(){
-                setWindowTop(window.scrollY)
-            }
-
-            window.addEventListener("scroll", setHeightDown)
-
-            return () => window.removeEventListener("scroll", setHeightDown)
-        }
-    }, [])
-
-    React.useEffect(() => {
-        if(smallScreen){
-            window.scrollTo({ top: windowTop, behavior: 'instant' })
-            sessionStorage.setItem("topOffset", JSON.stringify(windowTop))
-        }
-    }, [windowTop])
 
     return(
         <div id="contents" className={`contents ${darkMode ? "dark" : ""}`}>

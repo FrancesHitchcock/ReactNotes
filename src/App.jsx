@@ -31,7 +31,11 @@ function App() {
         setContentsVisible(true)
     }
 
-    function handleClick(id){
+    function handleClick(id, windowTop = 0){
+        if(smallScreen) {
+            sessionStorage.setItem("topOffset", JSON.stringify(windowTop))
+        }
+        
         setCurrentDescription(notesData.filter(entry => entry.id === id)[0])
 
         setNotesData(prev => {
@@ -39,6 +43,7 @@ function App() {
                 return entry.id === id ? {...entry, selected: true} : {...entry, selected: false}
             })
         })
+        
         setContentsVisible(false)
     } 
 

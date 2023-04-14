@@ -37,6 +37,7 @@ body{
   padding: 20px 30px;
 }
 
+/* this makes the scroll bars dark */
 .dark {
   color-scheme: dark;
 }
@@ -73,6 +74,7 @@ body{
 .dark .toggler-slider {
   border-color: white;
   background-color: #F5F5F5;
+  justify-content: flex-end;
 } 
 
 .toggler-slider-circle {
@@ -100,10 +102,6 @@ body{
 
 .dark .toggler-dark {
   color: #FFFFFF;
-}
-
-.dark .toggler-slider {
-  justify-content: flex-end;
 }
 
 .split{
