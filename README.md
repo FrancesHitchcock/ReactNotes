@@ -28,3 +28,9 @@ The app incorporates the following features:
 
 Frances Hitchcock, 1 April 2023
 
+## Update
+
+- Ref. scrolling being slow: I have now mended this by setting the scroll height to local storage in the top level component. This involved passing the contents page scroll height to the handleClick() function as a parameter, and setting it to local storage at the start of the function, before setting the current description and re-rendering.
+
+Frances Hitchcock, 14 April 2023
+
